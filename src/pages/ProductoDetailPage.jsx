@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, Phone, Clock, Package, Heart } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Clock, Package, Heart } from 'lucide-react';
 import { getProductById } from '../data/products';
 import { AddToCartButton } from '../components/AddToCartButton';
 
@@ -102,9 +102,12 @@ export const ProductoDetailPage = () => {
             {/* Acciones */}
             <div className="product-actions">
               <AddToCartButton product={product} />
-              <a href="tel:1161518778" className="btn btn-outline">
-                <Phone size={18} />
-                Llamar para Pedir
+              <a href="https://wa.me/1161518778?text=Hola! Quiero realizar un pedido en Crosty! Me gustaria confirmar mi seleccion!" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="btn btn-outline">
+                <MessageCircle size={18} />
+                Enviar Pedido
               </a>
               <Link to="/productos" className="btn btn-outline">
                 <ArrowLeft size={18} />

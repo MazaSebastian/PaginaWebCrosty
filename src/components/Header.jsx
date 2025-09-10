@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingCart, Phone, Settings } from 'lucide-react';
+import { Menu, X, ShoppingCart, MessageCircle, Settings } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 
 export const Header = () => {
@@ -59,9 +59,12 @@ export const Header = () => {
                 <span>Admin</span>
               </Link>
             )}
-            <a href="tel:1161518778" className="btn btn-outline">
-              <Phone size={18} />
-              <span>Llamar</span>
+            <a href="https://wa.me/1161518778?text=Hola! Quiero realizar un pedido en Crosty! Me gustaria confirmar mi seleccion!" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="btn btn-outline">
+              <MessageCircle size={18} />
+              <span>WhatsApp</span>
             </a>
             <Link to="/carrito" className="btn btn-primary cart-btn">
               <ShoppingCart size={18} />
@@ -102,9 +105,12 @@ export const Header = () => {
                   <span>Admin</span>
                 </Link>
               )}
-              <a href="tel:1161518778" className="btn btn-outline">
-                <Phone size={18} />
-                <span>Llamar</span>
+              <a href="https://wa.me/1161518778?text=Hola! Quiero realizar un pedido en Crosty! Me gustaria confirmar mi seleccion!" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="btn btn-outline">
+                <MessageCircle size={18} />
+                <span>WhatsApp</span>
               </a>
               <Link to="/carrito" className="btn btn-primary cart-btn">
                 <ShoppingCart size={18} />

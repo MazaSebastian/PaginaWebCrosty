@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Plus, Minus, Trash2, ShoppingBag, Phone } from 'lucide-react';
+import { ArrowLeft, Plus, Minus, Trash2, ShoppingBag, MessageCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useToast } from '../contexts/ToastContext';
 
@@ -49,6 +49,28 @@ export const CartPage = () => {
       currency: 'ARS',
       minimumFractionDigits: 0
     }).format(price);
+  };
+
+  const generateWhatsAppMessage = () => {
+    const baseMessage = "Hola! Quiero realizar un pedido en Crosty! Me gustaria confirmar mi seleccion!";
+    
+    const itemsList = items.map(item => {
+      const price = item.product.prices[item.selectedPrice] || 0;
+      const subtotal = price * item.quantity;
+      return `• ${item.quantity}x ${item.product.name} (${item.selectedPrice} unidades) - ${formatPrice(subtotal)}`;
+    }).join('\n');
+    
+    const totalMessage = `\n\nTotal: ${formatPrice(total)}`;
+    
+    return `${baseMessage}\n\nMi pedido:\n${itemsList}${totalMessage}`;
+  };
+
+  const handleSendOrder = () => {
+    const message = generateWhatsAppMessage();
+    const whatsappNumber = '1161518778';
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, '_blank');
   };
 
   if (isEmpty()) {
@@ -225,13 +247,15 @@ export const CartPage = () => {
               </div>
 
               <div className="checkout-actions">
-                <a href={`tel:1161518778?text=Hola! Quiero hacer un pedido por $${total.toLocaleString()}. Mi carrito: ${items.map(item => `${item.quantity}x ${item.product.name} (${item.selectedPrice} unidades)`).join(', ')}`} 
-                   className="btn btn-primary checkout-btn">
-                  <Phone size={18} />
-                  Llamar para Pedir
-                </a>
+                <button 
+                  onClick={handleSendOrder}
+                  className="btn btn-primary checkout-btn"
+                >
+                  <MessageCircle size={18} />
+                  Enviar Pedido
+                </button>
                 <p className="checkout-note">
-                  Te contactamos para coordinar la entrega
+                  Se abrirá WhatsApp para confirmar tu pedido
                 </p>
               </div>
             </div>
