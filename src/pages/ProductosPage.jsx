@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getProductsByCategory, products } from '../data/products';
+import { AddToCartButton } from '../components/AddToCartButton';
 
 export const ProductosPage = () => {
   const { category } = useParams();
@@ -103,9 +104,7 @@ export const ProductosPage = () => {
                     Ver Detalles
                     <ArrowRight size={16} />
                   </Link>
-                  <a href="tel:1161518778" className="btn btn-primary">
-                    Pedir Ahora
-                  </a>
+                  <AddToCartButton product={product} />
                 </div>
               </div>
             </div>

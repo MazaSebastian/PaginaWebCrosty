@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Package, Heart } from 'lucide-react';
 import { getFeaturedProducts } from '../data/products';
+import { AddToCartButton } from '../components/AddToCartButton';
 
 export const HomePage = () => {
   const featuredProducts = getFeaturedProducts();
@@ -166,9 +167,12 @@ export const HomePage = () => {
                       </span>
                     ))}
                   </div>
-                  <Link to={`/producto/${product.id}`} className="btn btn-secondary">
-                    Ver Detalles
-                  </Link>
+                  <div className="product-actions">
+                    <Link to={`/producto/${product.id}`} className="btn btn-secondary">
+                      Ver Detalles
+                    </Link>
+                    <AddToCartButton product={product} />
+                  </div>
                 </div>
               </div>
             ))}

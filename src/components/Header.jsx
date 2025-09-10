@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ShoppingCart, Phone, Settings } from 'lucide-react';
+import { useCart } from '../contexts/CartContext';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
+  const { getItemCount } = useCart();
 
   useEffect(() => {
     // Verificar si el usuario está autenticado como admin
@@ -61,10 +63,13 @@ export const Header = () => {
               <Phone size={18} />
               <span>Llamar</span>
             </a>
-            <button className="btn btn-primary">
+            <Link to="/carrito" className="btn btn-primary cart-btn">
               <ShoppingCart size={18} />
-              <span>Pedir</span>
-            </button>
+              <span>Carrito</span>
+              {getItemCount() > 0 && (
+                <span className="cart-badge">{getItemCount()}</span>
+              )}
+            </Link>
           </div>
 
           {/* Botón menú móvil */}
@@ -101,10 +106,13 @@ export const Header = () => {
                 <Phone size={18} />
                 <span>Llamar</span>
               </a>
-              <button className="btn btn-primary">
+              <Link to="/carrito" className="btn btn-primary cart-btn">
                 <ShoppingCart size={18} />
-                <span>Pedir</span>
-              </button>
+                <span>Carrito</span>
+                {getItemCount() > 0 && (
+                  <span className="cart-badge">{getItemCount()}</span>
+                )}
+              </Link>
             </div>
           </nav>
         )}
@@ -199,6 +207,27 @@ export const Header = () => {
         .admin-btn:hover {
           background: linear-gradient(135deg, #a0522d, #8b4513);
           transform: translateY(-1px);
+        }
+
+        .cart-btn {
+          position: relative;
+        }
+
+        .cart-badge {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background: #ef4444;
+          color: white;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.75rem;
+          font-weight: 600;
+          border: 2px solid white;
         }
 
         .menu-toggle {

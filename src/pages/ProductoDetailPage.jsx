@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Phone, Clock, Package, Heart } from 'lucide-react';
 import { getProductById } from '../data/products';
+import { AddToCartButton } from '../components/AddToCartButton';
 
 export const ProductoDetailPage = () => {
   const { id } = useParams();
@@ -100,7 +101,8 @@ export const ProductoDetailPage = () => {
 
             {/* Acciones */}
             <div className="product-actions">
-              <a href="tel:1161518778" className="btn btn-primary">
+              <AddToCartButton product={product} />
+              <a href="tel:1161518778" className="btn btn-outline">
                 <Phone size={18} />
                 Llamar para Pedir
               </a>
