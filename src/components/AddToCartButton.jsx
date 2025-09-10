@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { ShoppingCart, Plus, Minus } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useToast } from '../contexts/ToastContext';
 
 export const AddToCartButton = ({ product }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState('');
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const { showSuccess } = useToast();
 
   const handleAddToCart = () => {
     if (!selectedPrice) {
-      alert('Por favor selecciona una opción de cantidad');
+      showSuccess('Por favor selecciona una opción de cantidad');
       return;
     }
 
@@ -19,13 +21,13 @@ export const AddToCartButton = ({ product }) => {
     setQuantity(1);
     setSelectedPrice('');
     
-    // Mostrar confirmación
-    alert(`${product.name} agregado al carrito`);
+    // Mostrar confirmación elegante
+    showSuccess(`${product.name} agregado al carrito`);
   };
 
   const handleQuickAdd = (priceKey) => {
     addToCart(product, 1, priceKey);
-    alert(`${product.name} agregado al carrito`);
+    showSuccess(`${product.name} agregado al carrito`);
   };
 
   const getPriceFields = () => {

@@ -10,35 +10,38 @@ import { AdminLogin } from './pages/AdminLogin';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminProductForm } from './pages/AdminProductForm';
 import { CartProvider } from './contexts/CartContext';
+import { ToastProvider } from './contexts/ToastContext';
 import './styles/globals.css';
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <div className="App">
-          <Header />
-          <main>
-            <Routes>
-              {/* Rutas públicas */}
-              <Route path="/" element={<HomePage />} />
-              <Route path="/productos" element={<ProductosPage />} />
-              <Route path="/productos/:category" element={<ProductosPage />} />
-              <Route path="/producto/:id" element={<ProductoDetailPage />} />
-              <Route path="/carrito" element={<CartPage />} />
-              <Route path="/contacto" element={<ContactoPage />} />
-              
-              {/* Rutas de administración */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              <Route path="/admin/products/new" element={<AdminProductForm />} />
-              <Route path="/admin/products/edit/:id" element={<AdminProductForm />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </CartProvider>
+    <ToastProvider>
+      <CartProvider>
+        <Router>
+          <div className="App">
+            <Header />
+            <main>
+              <Routes>
+                {/* Rutas públicas */}
+                <Route path="/" element={<HomePage />} />
+                <Route path="/productos" element={<ProductosPage />} />
+                <Route path="/productos/:category" element={<ProductosPage />} />
+                <Route path="/producto/:id" element={<ProductoDetailPage />} />
+                <Route path="/carrito" element={<CartPage />} />
+                <Route path="/contacto" element={<ContactoPage />} />
+                
+                {/* Rutas de administración */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/products/new" element={<AdminProductForm />} />
+                <Route path="/admin/products/edit/:id" element={<AdminProductForm />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </CartProvider>
+    </ToastProvider>
   );
 }
 
