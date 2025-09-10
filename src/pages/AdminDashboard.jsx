@@ -12,7 +12,7 @@ import {
   Image as ImageIcon,
   DollarSign
 } from 'lucide-react';
-import { products } from '../data/products';
+import { productService } from '../services/productService';
 
 export const AdminDashboard = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -29,9 +29,13 @@ export const AdminDashboard = () => {
     }
 
     // Cargar todos los productos
-    const allProductsList = [...products.pollos, ...products.tartas];
-    setAllProducts(allProductsList);
+    loadProducts();
   }, [navigate]);
+
+  const loadProducts = () => {
+    const allProductsList = productService.getAllProducts();
+    setAllProducts(allProductsList);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('adminAuth');
@@ -45,10 +49,13 @@ export const AdminDashboard = () => {
 
   const handleDeleteProduct = (productId) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      // Aquí implementarías la lógica de eliminación
-      console.log('Eliminar producto:', productId);
-      // Por ahora solo actualizamos el estado local
-      setAllProducts(prev => prev.filter(p => p.id !== productId));
+      const success = productService.deleteProduct(productId);
+      if (success) {
+        loadProducts(); // Recargar la lista
+        alert('Producto eliminado exitosamente');
+      } else {
+        alert('Error al eliminar el producto');
+      }
     }
   };
 

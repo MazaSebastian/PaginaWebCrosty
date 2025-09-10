@@ -9,7 +9,7 @@ import {
   Trash2,
   Image as ImageIcon
 } from 'lucide-react';
-import { products, getProductById } from '../data/products';
+import { productService } from '../services/productService';
 
 export const AdminProductForm = () => {
   const { id } = useParams();
@@ -46,7 +46,7 @@ export const AdminProductForm = () => {
 
     // Si estamos editando, cargar los datos del producto
     if (isEditing) {
-      const product = getProductById(id);
+      const product = productService.getProductById(id);
       if (product) {
         setFormData({
           name: product.name,
@@ -139,18 +139,26 @@ export const AdminProductForm = () => {
     setLoading(true);
 
     try {
-      // Simular procesamiento
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Simular delay para UX
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Aquí implementarías la lógica de guardado
-      console.log('Guardando producto:', {
-        ...formData,
-        imageFile: imageFile?.name
-      });
+      let success = false;
+      
+      if (isEditing) {
+        // Actualizar producto existente
+        success = productService.updateProduct(id, formData);
+      } else {
+        // Crear nuevo producto
+        const newProduct = productService.createProduct(formData);
+        success = Boolean(newProduct);
+      }
 
-      // Simular éxito
-      alert(isEditing ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente');
-      navigate('/admin/dashboard');
+      if (success) {
+        alert(isEditing ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente');
+        navigate('/admin/dashboard');
+      } else {
+        alert('Error al guardar el producto');
+      }
       
     } catch (error) {
       console.error('Error al guardar:', error);
