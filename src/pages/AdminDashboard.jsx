@@ -33,7 +33,9 @@ export const AdminDashboard = () => {
   }, [navigate]);
 
   const loadProducts = () => {
+    console.log('Cargando productos...');
     const allProductsList = productService.getAllProducts();
+    console.log('Productos cargados:', allProductsList);
     setAllProducts(allProductsList);
   };
 
