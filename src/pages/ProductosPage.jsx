@@ -91,13 +91,6 @@ export const ProductosPage = () => {
                 <h3 className="product-card-title">{product.name}</h3>
                 <p className="product-card-description">{product.description}</p>
                 
-                <div className="product-card-prices">
-                  {Object.entries(product.prices).map(([quantity, price]) => (
-                    <span key={quantity} className="price-tag">
-                      {quantity} unidades: ${price.toLocaleString()}
-                    </span>
-                  ))}
-                </div>
 
                 <div className="product-actions">
                   <Link to={`/producto/${product.id}`} className="btn btn-secondary">

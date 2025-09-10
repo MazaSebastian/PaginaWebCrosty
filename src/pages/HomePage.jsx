@@ -160,13 +160,6 @@ export const HomePage = () => {
                 <div className="product-card-content">
                   <h3 className="product-card-title">{product.name}</h3>
                   <p className="product-card-description">{product.description}</p>
-                  <div className="product-card-prices">
-                    {Object.entries(product.prices).map(([quantity, price]) => (
-                      <span key={quantity} className="price-tag">
-                        {quantity} unidades: ${price.toLocaleString()}
-                      </span>
-                    ))}
-                  </div>
                   <div className="product-actions">
                     <Link to={`/producto/${product.id}`} className="btn btn-secondary">
                       Ver Detalles
@@ -434,21 +427,6 @@ export const HomePage = () => {
           margin-bottom: 1rem;
         }
 
-        .product-card-prices {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .price-tag {
-          background: var(--light-gray);
-          padding: 0.5rem;
-          border-radius: 8px;
-          font-size: 0.9rem;
-          color: var(--dark-gray);
-          text-align: center;
-        }
 
         .product-actions {
           display: flex;
