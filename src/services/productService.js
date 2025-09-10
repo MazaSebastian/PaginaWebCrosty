@@ -117,14 +117,10 @@ const defaultProducts = {
 const getProducts = () => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    console.log('Datos almacenados:', stored);
     if (stored) {
-      const parsed = JSON.parse(stored);
-      console.log('Productos parseados:', parsed);
-      return parsed;
+      return JSON.parse(stored);
     }
     // Si no hay datos guardados, usar los por defecto y guardarlos
-    console.log('No hay datos guardados, usando productos por defecto');
     saveProducts(defaultProducts);
     return defaultProducts;
   } catch (error) {
@@ -136,9 +132,7 @@ const getProducts = () => {
 // Función para guardar productos en localStorage
 const saveProducts = (products) => {
   try {
-    console.log('Guardando productos:', products);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-    console.log('Productos guardados exitosamente');
   } catch (error) {
     console.error('Error al guardar productos:', error);
   }
@@ -192,7 +186,6 @@ export const productService = {
 
   // Crear nuevo producto
   createProduct: (productData) => {
-    console.log('Creando producto con datos:', productData);
     const products = getProducts();
     const newProduct = {
       id: generateId(productData.name),
@@ -204,13 +197,8 @@ export const productService = {
       image: productData.image || '/images/placeholder.png'
     };
 
-    console.log('Producto creado:', newProduct);
-    console.log('Productos antes de agregar:', products);
-
-    // Agregar a la categoría correspondiente
-    products[newProduct.category].push(newProduct);
-    
-    console.log('Productos después de agregar:', products);
+    // Agregar a la categoría correspondiente (al principio para que sea más visible)
+    products[newProduct.category].unshift(newProduct);
     
     // Guardar en localStorage
     saveProducts(products);
