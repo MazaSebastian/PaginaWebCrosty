@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ArrowLeft, Plus, Minus, Trash2, ShoppingBag, MessageCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useToast } from '../contexts/ToastContext';
@@ -6,6 +7,11 @@ import { useToast } from '../contexts/ToastContext';
 export const CartPage = () => {
   const { items, total, updateQuantity, removeFromCart, clearCart, isEmpty } = useCart();
   const { showConfirm } = useToast();
+
+  // Scroll al inicio cuando se carga la página
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleQuantityChange = (index, newQuantity) => {
     if (newQuantity < 1) {

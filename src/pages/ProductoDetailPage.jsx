@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ArrowLeft, MessageCircle, Clock, Package, Heart } from 'lucide-react';
 import { getProductById } from '../data/products';
 import { AddToCartButton } from '../components/AddToCartButton';
@@ -6,6 +7,11 @@ import { AddToCartButton } from '../components/AddToCartButton';
 export const ProductoDetailPage = () => {
   const { id } = useParams();
   const product = getProductById(id);
+
+  // Scroll al inicio cuando se carga la página
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!product) {
     return <Navigate to="/productos" replace />;

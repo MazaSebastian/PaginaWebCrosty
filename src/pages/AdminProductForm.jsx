@@ -39,6 +39,9 @@ export const AdminProductForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    // Scroll al inicio cuando se carga la página
+    window.scrollTo(0, 0);
+    
     // Verificar autenticación
     const isAuthenticated = localStorage.getItem('adminAuth');
     if (!isAuthenticated) {
