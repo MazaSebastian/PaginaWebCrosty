@@ -389,6 +389,79 @@ export const HomePage = () => {
           padding: 1rem;
           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
+
+        /* Estilos para tarjetas de productos */
+        .product-card {
+          background: white;
+          border-radius: 16px;
+          box-shadow: var(--shadow-soft);
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-medium);
+        }
+
+        .product-card-image {
+          position: relative;
+          height: 200px;
+          overflow: hidden;
+        }
+
+        .product-card-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .product-card-content {
+          padding: 1.5rem;
+        }
+
+        .product-card-title {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: var(--dark-gray);
+          margin-bottom: 0.5rem;
+        }
+
+        .product-card-description {
+          color: var(--text-gray);
+          font-size: 0.9rem;
+          line-height: 1.5;
+          margin-bottom: 1rem;
+        }
+
+        .product-card-prices {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .price-tag {
+          background: var(--light-gray);
+          padding: 0.5rem;
+          border-radius: 8px;
+          font-size: 0.9rem;
+          color: var(--dark-gray);
+          text-align: center;
+        }
+
+        .product-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .product-actions .btn {
+          width: 100%;
+          justify-content: center;
+          padding: 12px 16px;
+          font-size: 0.9rem;
+        }
       `}</style>
     </div>
   );

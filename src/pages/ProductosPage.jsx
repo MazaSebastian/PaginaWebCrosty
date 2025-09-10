@@ -196,14 +196,16 @@ export const ProductosPage = () => {
 
         .product-actions {
           display: flex;
-          gap: 0.5rem;
+          flex-direction: column;
+          gap: 0.75rem;
           margin-top: 1rem;
         }
 
         .product-actions .btn {
-          flex: 1;
+          width: 100%;
           font-size: 0.9rem;
-          padding: 10px 16px;
+          padding: 12px 16px;
+          justify-content: center;
         }
 
         .product-info {

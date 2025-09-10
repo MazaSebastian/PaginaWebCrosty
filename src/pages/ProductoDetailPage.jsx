@@ -282,8 +282,16 @@ export const ProductoDetailPage = () => {
 
         .product-actions {
           display: flex;
-          gap: 1rem;
+          flex-direction: column;
+          gap: 0.75rem;
           margin-bottom: 2rem;
+        }
+
+        .product-actions .btn {
+          width: 100%;
+          justify-content: center;
+          padding: 12px 16px;
+          font-size: 0.9rem;
         }
 
         .additional-info {

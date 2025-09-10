@@ -55,21 +55,6 @@ export const AddToCartButton = ({ product }) => {
             <ShoppingCart size={18} />
             Agregar al Carrito
           </button>
-          
-          <div className="quick-options">
-            {getPriceFields().map(priceKey => (
-              <button
-                key={priceKey}
-                onClick={() => handleQuickAdd(priceKey)}
-                className="quick-add-btn"
-                title={`Agregar ${priceKey} unidades`}
-              >
-                {priceKey} unidades
-                <br />
-                <span className="price">{formatPrice(product.prices[priceKey])}</span>
-              </button>
-            ))}
-          </div>
         </div>
       ) : (
         <div className="cart-options">
@@ -143,33 +128,6 @@ export const AddToCartButton = ({ product }) => {
           justify-content: center;
         }
 
-        .quick-options {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          gap: 0.5rem;
-        }
-
-        .quick-add-btn {
-          padding: 0.75rem;
-          border: 2px solid var(--border-light);
-          border-radius: 8px;
-          background: white;
-          color: var(--dark-gray);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          font-size: 0.9rem;
-          text-align: center;
-        }
-
-        .quick-add-btn:hover {
-          border-color: var(--warm-orange);
-          background: rgba(255, 107, 53, 0.05);
-        }
-
-        .quick-add-btn .price {
-          font-weight: 600;
-          color: var(--warm-orange);
-        }
 
         .cart-options {
           display: flex;
@@ -269,7 +227,6 @@ export const AddToCartButton = ({ product }) => {
         }
 
         @media (max-width: 480px) {
-          .quick-options,
           .price-options {
             grid-template-columns: 1fr;
           }
