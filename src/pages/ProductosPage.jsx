@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getProductsByCategory, products } from '../data/products';
@@ -7,11 +7,17 @@ export const ProductosPage = () => {
   const { category } = useParams();
   const [selectedCategory, setSelectedCategory] = useState(category || 'all');
 
+  // Actualizar selectedCategory cuando cambie la URL
+  useEffect(() => {
+    setSelectedCategory(category || 'all');
+  }, [category]);
+
   const getProductsToShow = () => {
     if (selectedCategory === 'all') {
       return [...products.pollos, ...products.tartas];
     }
-    return getProductsByCategory(selectedCategory);
+    const categoryProducts = getProductsByCategory(selectedCategory);
+    return categoryProducts || [];
   };
 
   const productsToShow = getProductsToShow();
