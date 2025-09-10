@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Plus, Minus, Trash2, ShoppingBag, Phone } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useToast } from '../contexts/ToastContext';
 
 export const CartPage = () => {
   const { items, total, updateQuantity, removeFromCart, clearCart, isEmpty } = useCart();
+  const { showConfirm } = useToast();
 
   const handleQuantityChange = (index, newQuantity) => {
     if (newQuantity < 1) {
@@ -13,14 +15,30 @@ export const CartPage = () => {
     }
   };
 
-  const handleRemoveItem = (index) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este producto del carrito?')) {
+  const handleRemoveItem = async (index) => {
+    const confirmed = await showConfirm({
+      title: 'Eliminar producto',
+      message: '¿Estás seguro de que quieres eliminar este producto del carrito?',
+      confirmText: 'Eliminar',
+      cancelText: 'Cancelar',
+      type: 'danger'
+    });
+    
+    if (confirmed) {
       removeFromCart(index);
     }
   };
 
-  const handleClearCart = () => {
-    if (window.confirm('¿Estás seguro de que quieres vaciar todo el carrito?')) {
+  const handleClearCart = async () => {
+    const confirmed = await showConfirm({
+      title: 'Vaciar carrito',
+      message: '¿Estás seguro de que quieres vaciar todo el carrito?',
+      confirmText: 'Vaciar',
+      cancelText: 'Cancelar',
+      type: 'danger'
+    });
+    
+    if (confirmed) {
       clearCart();
     }
   };

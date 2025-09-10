@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CheckCircle, X } from 'lucide-react';
+import { CheckCircle, X, AlertCircle, Info } from 'lucide-react';
 
 export const Toast = ({ message, isVisible, onClose, type = 'success' }) => {
   const [show, setShow] = useState(isVisible);
@@ -31,10 +31,16 @@ export const Toast = ({ message, isVisible, onClose, type = 'success' }) => {
       <div className={`toast ${type} ${show ? 'show' : ''}`}>
         <div className="toast-content">
           <div className="toast-icon">
-            <CheckCircle size={24} />
+            {type === 'success' && <CheckCircle size={24} />}
+            {type === 'error' && <AlertCircle size={24} />}
+            {type === 'info' && <Info size={24} />}
           </div>
           <div className="toast-message">
-            <h4>¡Producto agregado!</h4>
+            <h4>
+              {type === 'success' && '¡Producto agregado!'}
+              {type === 'error' && 'Error'}
+              {type === 'info' && 'Información'}
+            </h4>
             <p>{message}</p>
           </div>
           <button 
@@ -87,6 +93,14 @@ export const Toast = ({ message, isVisible, onClose, type = 'success' }) => {
           border-left: 4px solid #22c55e;
         }
 
+        .toast.error {
+          border-left: 4px solid #ef4444;
+        }
+
+        .toast.info {
+          border-left: 4px solid #3b82f6;
+        }
+
         .toast-content {
           display: flex;
           align-items: center;
@@ -95,8 +109,19 @@ export const Toast = ({ message, isVisible, onClose, type = 'success' }) => {
         }
 
         .toast-icon {
-          color: #22c55e;
           flex-shrink: 0;
+        }
+
+        .toast.success .toast-icon {
+          color: #22c55e;
+        }
+
+        .toast.error .toast-icon {
+          color: #ef4444;
+        }
+
+        .toast.info .toast-icon {
+          color: #3b82f6;
         }
 
         .toast-message {
@@ -138,10 +163,21 @@ export const Toast = ({ message, isVisible, onClose, type = 'success' }) => {
           bottom: 0;
           left: 0;
           height: 3px;
-          background: linear-gradient(90deg, #22c55e, #16a34a);
           width: 100%;
           transform-origin: left;
           animation: progress 3s linear forwards;
+        }
+
+        .toast.success .toast-progress {
+          background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+
+        .toast.error .toast-progress {
+          background: linear-gradient(90deg, #ef4444, #dc2626);
+        }
+
+        .toast.info .toast-progress {
+          background: linear-gradient(90deg, #3b82f6, #2563eb);
         }
 
         @keyframes progress {

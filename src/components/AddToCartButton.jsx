@@ -8,11 +8,11 @@ export const AddToCartButton = ({ product }) => {
   const [selectedPrice, setSelectedPrice] = useState('');
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-  const { showSuccess } = useToast();
+  const { showSuccess, showError } = useToast();
 
   const handleAddToCart = () => {
     if (!selectedPrice) {
-      showSuccess('Por favor selecciona una opción de cantidad');
+      showError('Por favor selecciona una opción de cantidad');
       return;
     }
 

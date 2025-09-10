@@ -13,12 +13,14 @@ import {
   DollarSign
 } from 'lucide-react';
 import { productService } from '../services/productService';
+import { useToast } from '../contexts/ToastContext';
 
 export const AdminDashboard = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const { showConfirm, showSuccess, showError } = useToast();
 
   useEffect(() => {
     // Verificar autenticación
@@ -47,14 +49,22 @@ export const AdminDashboard = () => {
     navigate(`/admin/products/edit/${productId}`);
   };
 
-  const handleDeleteProduct = (productId) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+  const handleDeleteProduct = async (productId) => {
+    const confirmed = await showConfirm({
+      title: 'Eliminar producto',
+      message: '¿Estás seguro de que quieres eliminar este producto?',
+      confirmText: 'Eliminar',
+      cancelText: 'Cancelar',
+      type: 'danger'
+    });
+    
+    if (confirmed) {
       const success = productService.deleteProduct(productId);
       if (success) {
         loadProducts(); // Recargar la lista
-        alert('Producto eliminado exitosamente');
+        showSuccess('Producto eliminado exitosamente');
       } else {
-        alert('Error al eliminar el producto');
+        showError('Error al eliminar el producto');
       }
     }
   };

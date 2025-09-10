@@ -10,11 +10,13 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import { productService } from '../services/productService';
+import { useToast } from '../contexts/ToastContext';
 
 export const AdminProductForm = () => {
   const { id } = useParams();
   const isEditing = Boolean(id);
   const navigate = useNavigate();
+  const { showSuccess, showError } = useToast();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -154,15 +156,15 @@ export const AdminProductForm = () => {
       }
 
       if (success) {
-        alert(isEditing ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente');
+        showSuccess(isEditing ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente');
         navigate('/admin/dashboard');
       } else {
-        alert('Error al guardar el producto');
+        showError('Error al guardar el producto');
       }
       
     } catch (error) {
       console.error('Error al guardar:', error);
-      alert('Error al guardar el producto');
+      showError('Error al guardar el producto');
     } finally {
       setLoading(false);
     }
