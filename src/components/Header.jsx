@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingCart, Phone } from 'lucide-react';
+import { Menu, X, ShoppingCart, Phone, Settings } from 'lucide-react';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    // Verificar si el usuario está autenticado como admin
+    const adminAuth = localStorage.getItem('adminAuth');
+    setIsAdmin(Boolean(adminAuth));
+  }, [location]);
 
   const navigation = [
     { name: 'Inicio', href: '/' },
@@ -44,6 +51,12 @@ export const Header = () => {
 
           {/* Acciones */}
           <div className="header-actions">
+            {isAdmin && (
+              <Link to="/admin/dashboard" className="btn btn-outline admin-btn">
+                <Settings size={18} />
+                <span>Admin</span>
+              </Link>
+            )}
             <a href="tel:1161518778" className="btn btn-outline">
               <Phone size={18} />
               <span>Llamar</span>
@@ -78,6 +91,12 @@ export const Header = () => {
               </Link>
             ))}
             <div className="nav-mobile-actions">
+              {isAdmin && (
+                <Link to="/admin/dashboard" className="btn btn-outline admin-btn">
+                  <Settings size={18} />
+                  <span>Admin</span>
+                </Link>
+              )}
               <a href="tel:1161518778" className="btn btn-outline">
                 <Phone size={18} />
                 <span>Llamar</span>
@@ -169,6 +188,17 @@ export const Header = () => {
           display: flex;
           gap: 1rem;
           align-items: center;
+        }
+
+        .admin-btn {
+          background: linear-gradient(135deg, #8b4513, #a0522d);
+          color: white;
+          border: none;
+        }
+
+        .admin-btn:hover {
+          background: linear-gradient(135deg, #a0522d, #8b4513);
+          transform: translateY(-1px);
         }
 
         .menu-toggle {
