@@ -211,23 +211,27 @@ export const Header = () => {
 
         .cart-btn {
           position: relative;
+          padding-right: 8px;
+          overflow: visible;
         }
 
         .cart-badge {
           position: absolute;
-          top: -8px;
-          right: -8px;
+          top: -6px;
+          right: -6px;
           background: #ef4444;
           color: white;
           border-radius: 50%;
-          width: 20px;
-          height: 20px;
+          min-width: 18px;
+          height: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.75rem;
-          font-weight: 600;
+          font-size: 0.7rem;
+          font-weight: 700;
           border: 2px solid white;
+          padding: 0 4px;
+          box-sizing: border-box;
         }
 
         .menu-toggle {
