@@ -93,12 +93,20 @@ export const Header = () => {
             ))}
             <div className="nav-mobile-actions">
               {isAdmin && (
-                <Link to="/admin/dashboard" className="btn btn-outline admin-btn">
+                <Link 
+                  to="/admin/dashboard" 
+                  className="btn btn-outline admin-btn"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   <Settings size={18} />
                   <span>Admin</span>
                 </Link>
               )}
-              <Link to="/carrito" className="btn btn-primary cart-btn">
+              <Link 
+                to="/carrito" 
+                className="btn btn-primary cart-btn"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <ShoppingCart size={18} />
                 <span>Carrito</span>
                 {getItemCount() > 0 && (
