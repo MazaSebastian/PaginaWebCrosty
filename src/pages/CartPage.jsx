@@ -73,7 +73,7 @@ export const CartPage = () => {
 
   const handleSendOrder = () => {
     const message = generateWhatsAppMessage();
-    const whatsappNumber = '1130288564';
+    const whatsappNumber = '541130288564';
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     
     window.open(whatsappUrl, '_blank');

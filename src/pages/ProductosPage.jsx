@@ -120,7 +120,7 @@ export const ProductosPage = () => {
           <div className="info-card">
             <h3>¿Cómo Pedir?</h3>
             <p>
-              Simplemente llámanos al <strong>11-3028-8564</strong> y te ayudaremos 
+              Simplemente llámanos al <strong>+54 11 3028-8564</strong> y te ayudaremos 
               a elegir los productos perfectos para ti. También puedes contactarnos 
               para consultas sobre ingredientes o preparación.
             </p>

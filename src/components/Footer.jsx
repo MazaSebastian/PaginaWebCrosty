@@ -35,7 +35,7 @@ export const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <Phone size={16} />
-                <a href="tel:1130288564">11-3028-8564</a>
+                <a href="tel:+541130288564">+54 11 3028-8564</a>
               </div>
               <div className="contact-item">
                 <MapPin size={16} />
