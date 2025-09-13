@@ -73,7 +73,7 @@ export const CartPage = () => {
 
   const handleSendOrder = () => {
     const message = generateWhatsAppMessage();
-    const whatsappNumber = '1161518778';
+    const whatsappNumber = '1130288564';
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     
     window.open(whatsappUrl, '_blank');
@@ -238,11 +238,6 @@ export const CartPage = () => {
               <div className="summary-row">
                 <span>Subtotal ({items.reduce((acc, item) => acc + item.quantity, 0)} productos)</span>
                 <span>{formatPrice(total)}</span>
-              </div>
-              
-              <div className="summary-row">
-                <span>Envío</span>
-                <span className="free-shipping">Gratis</span>
               </div>
               
               <div className="summary-divider"></div>
@@ -473,11 +468,6 @@ export const CartPage = () => {
           font-size: 1.2rem;
           font-weight: 700;
           color: var(--dark-gray);
-        }
-
-        .free-shipping {
-          color: #22c55e;
-          font-weight: 600;
         }
 
         .summary-divider {

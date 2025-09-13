@@ -23,7 +23,7 @@ export const ContactoPage = () => {
                 <Phone className="contact-icon" />
                 <div className="contact-details">
                   <h3>Teléfono</h3>
-                  <a href="tel:1161518778">11-6151-8778</a>
+                  <a href="tel:1130288564">11-3028-8564</a>
                   <p>Llamanos para hacer tu pedido</p>
                 </div>
               </div>
@@ -50,7 +50,7 @@ export const ContactoPage = () => {
                 <MessageCircle className="contact-icon" />
                 <div className="contact-details">
                   <h3>WhatsApp</h3>
-                  <a href="https://wa.me/541161518778">11-6151-8778</a>
+                  <a href="https://wa.me/541130288564">11-3028-8564</a>
                   <p>Escríbenos por WhatsApp</p>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export const ContactoPage = () => {
                 <div className="step-number">1</div>
                 <div className="step-content">
                   <h3>Llamanos</h3>
-                  <p>Contactanos al 11-6151-8778 para consultar disponibilidad y hacer tu pedido.</p>
+                  <p>Contactanos al 11-3028-8564 para consultar disponibilidad y hacer tu pedido.</p>
                 </div>
               </div>
 
@@ -126,11 +126,11 @@ export const ContactoPage = () => {
           <h2>¿Listo para Hacer tu Pedido?</h2>
           <p>No esperes más, contactanos ahora y disfruta de comida deliciosa sin complicaciones.</p>
           <div className="cta-actions">
-            <a href="tel:1161518778" className="btn btn-primary">
+            <a href="tel:1130288564" className="btn btn-primary">
               <Phone size={18} />
               Llamar Ahora
             </a>
-            <a href="https://wa.me/541161518778" className="btn btn-secondary">
+            <a href="https://wa.me/541130288564" className="btn btn-secondary">
               <MessageCircle size={18} />
               WhatsApp
             </a>

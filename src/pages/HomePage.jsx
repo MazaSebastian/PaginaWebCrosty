@@ -189,8 +189,8 @@ export const HomePage = () => {
               sin la complicación de cocinar.
             </p>
             <div className="cta-actions">
-              <a href="tel:1161518778" className="btn btn-primary">
-                Llamar: 11-6151-8778
+              <a href="tel:1130288564" className="btn btn-primary">
+                Llamar: 11-3028-8564
               </a>
               <Link to="/contacto" className="btn btn-outline">
                 Más Información
